@@ -3,7 +3,9 @@ using UnityEngine;
 public class NewMonoBehaviourScript : MonoBehaviour
 {
     public GameObject[] animalPrefabs;
-    public int animalIndex;
+    private float spawnRangeX = 15.0f;
+    private float spawnPosZ = 20.0f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -15,7 +17,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.S)) 
         {
-            Instantiate(animalPrefabs[animalIndex], new Vector3(0,0,20), animalPrefabs[animalIndex].transform.rotation);
+            int animalIndex = Random.Range(0,animalPrefabs.Length);
+            Vector3 spawnPos = new Vector3(Random.Range(-spawnRangeX,spawnRangeX),0,spawnPosZ);
+
+            Instantiate(animalPrefabs[animalIndex], spawnPos, animalPrefabs[animalIndex].transform.rotation);
         }
     }
 }
